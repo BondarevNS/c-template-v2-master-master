@@ -11,14 +11,16 @@ void quickSort(int *numbers, int left, int right)
     int r_hold = right;
     pivot = numbers[left];
     while (left < right) {
-        while ((numbers[right] >= pivot) && (left < right))
+        while ((numbers[right] >= pivot) && (left < right)) {
             right--;
+        }
         if (left != right) {
             numbers[left] = numbers[right];
             left++;
         }
-        while ((numbers[left] <= pivot) && (left < right))
+        while ((numbers[left] <= pivot) && (left < right)) {
             left++;
+        }
         if (left != right) {
             numbers[right] = numbers[left];
             right--;
@@ -28,35 +30,41 @@ void quickSort(int *numbers, int left, int right)
     pivot = left;
     left = l_hold;
     right = r_hold;
-    if (left < pivot)
+    if (left < pivot) {
         quickSort(numbers, left, pivot - 1);
-    if (right > pivot)
+    }
+    if (right > pivot) {
         quickSort(numbers, pivot + 1, right);
+    }
 }
 
 void printArray(int arr[], int n)
 {
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i) {
         cout << arr[i] << " ";
     cout << "\n";
+    }
 }
 
 int main()
 {
-    unsigned int b[100];
-    for (int j = 0; j < 100; j++) {
-        int arr[1000];
+    int const n = 100;
+    int const a = 1000;
+    int const g = 99;
+    unsigned int b[n];
+    for (int j = 0; j < n; j++) {
+        int arr[a];
         for (int i = 0; i < int((sizeof(arr) / sizeof(arr[0]))); i++) {
-            arr[i] = rand() % 100 + 1;
+            arr[i] = rand() % n + 1;
         }
         unsigned int start_time = clock();
-        quickSort(arr, 0, 99);
+        quickSort(arr, 0, g);
         b[j] = clock() - start_time;
         cout << b[j] << endl;
     }
     unsigned int M = 0;
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < n; ++i) {
         M = M + b[i];
     }
-    cout << M / 1000.0 << endl;
+    cout << M / a << endl;
 }
